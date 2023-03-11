@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <!-- Brand -->
+        <a class="navbar-brand" href="#">Student Management System</a>
+
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/students}">Student Management</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm4 container justify-content-center card">
+                <h1 class="text-center">Thêm Sinh Viên </h1>
+                <div class="card-body">
+                    <form th:action="@{/students}" th:object="${student}" method="POST">
+                        <div class="form-group">
+                            <label> Họ Tên </label>
+                            <input type="text" name="name" th:field="*{hoTen}" class="form-control" placeholder="Nhập họ tên" />
+                        </div>
+
+                        <div class="row g-2">
+                            <div class="col-lg-auto">
+                                <label> Giới tính </label>
+                                <select class="form-control " name="gioiTinh" th:field="*{gioiTinh}"> 
+									<option value="true">Nam</option>
+									<option value="false">Nữ</option>
+								</select>
+                            </div>
+                            <div class="col-auto">
+                                <label> Tuổi </label>
+                                <select class="form-control " name="age" th:field="*{tuoi}"> 
+								<script>
+									for (var i = 18; i <= 30; i++) {
+										document.write("<option value='" + i + "'>" + i + "</option>"); }
+                            </script>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label> Số điện thoại </label>
+                            <input type="tel" name="phone" th:field="*{sdt}" class="form-control" placeholder="Nhập số điện thoại" />
+                        </div>
+
+                        <div class="form-group">
+                            <label> Email </label>
+                            <input type="email" name="email" th:field="*{email}" class="form-control" placeholder="Nhập Email" />
+                        </div>
+
+                        <div class="form-group">
+                            <label> Lớp </label>
+                            <input type="text" name="class" th:field="*{lop}" class="form-control" placeholder="Nhập lớp" />
+                        </div>
+
+                        <div class="form-group">
+                            <label> Địa chỉ </label>
+                            <input type="text" name="address" th:field="*{diaChi}" class="form-control" placeholder="Nhập địa chỉ" />
+                        </div>
+                        <div class="form-group">
+                            <label> GPA </label>
+                            <input type="number" step="any" name="gpa" th:field="*{gpa}" class="form-control" placeholder="Nhập GPA" />
+                        </div>
+
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">
+								Submit
+							</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
