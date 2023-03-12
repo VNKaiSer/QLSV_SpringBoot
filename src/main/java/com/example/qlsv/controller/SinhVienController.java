@@ -60,20 +60,16 @@ public class SinhVienController {
     public String backToHome(Model model) throws SQLException {
         model.addAttribute("students", sinhVienService.getAllStudents());
         return "home";
-      
-
     }
 
-	
 	@GetMapping("/students/new")
 	public String createStudentForm(Model model) {
 		// create student object to hold student form data
 		SinhVien student = new SinhVien();
 		model.addAttribute("student", student);
 		return "create_student";
-		
 	}
-	
+
 	@PostMapping("/students")
 	public String saveStudent(@ModelAttribute("student") SinhVien student) {
 		try {
@@ -85,13 +81,11 @@ public class SinhVienController {
         }
 		return "redirect:/students";
 	}
-	
+
 	@GetMapping("/students/edit/{id}")
 	public String editStudentForm(@PathVariable String id, Model model) {
 		try {
-    
             model.addAttribute("student", sinhVienService.getStudentById(id));
-            
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -103,7 +97,6 @@ public class SinhVienController {
 	public String updateStudent(@PathVariable String id,
 			@ModelAttribute("student") SinhVien student,
 			Model model) {
-		
 		// get student from database by id
 		SinhVien existingStudent;
         try {
@@ -138,7 +131,6 @@ public class SinhVienController {
 	public String updateForStudent(@PathVariable String id,
 			@ModelAttribute("student") SinhVien student,
 			Model model) {
-		
 		// get student from database by id
 		SinhVien existingStudent;
         try {
@@ -196,6 +188,15 @@ public class SinhVienController {
         return "students__sv";
     }
 
+    @GetMapping("/hocphan")
+    public String listHocPhan(Model model) throws SQLException {
+       
+        return "hocPhan";
+    }
+    
 
-
+    @GetMapping("/logo")
+    public String logo()  {
+        return "seeLogoThanhDo";
+    }
 }
